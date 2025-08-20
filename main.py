@@ -3,7 +3,7 @@ import json
 from tabulate import tabulate
 
 
-def get_average_report(files):
+def get_data_report(files):
 	data = {}
 	for file_path in files:
 		try:
@@ -19,7 +19,7 @@ def get_average_report(files):
 						else:
 							data[url] = (response_time, 1)
 		except Exception as e:
-			print(f"Ошибка при чтении лог-файла {file_path}: {e}")
+			print(f'Ошибка при чтении лог-файла {file_path}: {e}')
 	return data
 
 
@@ -35,7 +35,7 @@ def main():
 	args = parser.parse_args()
 
 	if args.report == 'average':
-		data = get_average_report(args.file)
+		data = get_data_report(args.file)
 		table = [('', 'handler', 'total', 'avg_response_time')]
 		for url, (total_time, count) in data.items():
 			table.append((url, count, round(total_time / count, 3)))
@@ -44,5 +44,5 @@ def main():
 		print('Неверный тип отчета')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
 	main()

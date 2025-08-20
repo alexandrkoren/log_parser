@@ -1,3 +1,4 @@
 *.log
 .flake8
 .vscode
+__pycache__/
